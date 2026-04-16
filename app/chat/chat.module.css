@@ -1,0 +1,259 @@
+/* ─── Chat Page ─────────────────────────────────────────────── */
+
+.root {
+    min-height: 100vh;
+    background: var(--litmus-bg);
+    color: var(--litmus-text);
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dot grid background */
+.gridBg {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow {
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 500px;
+    background: radial-gradient(ellipse,
+            rgba(200, 245, 66, 0.06) 0%,
+            transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.main {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.header {
+    text-align: center;
+}
+
+.step {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--litmus-accent);
+    margin: 0 0 0.6rem;
+}
+
+.title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.75rem, 5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--litmus-text);
+    margin: 0 0 0.75rem;
+}
+
+.sub {
+    font-size: 0.88rem;
+    color: var(--litmus-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ── Input Box ───────────────────────────────────────────────── */
+.inputWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.inputBox {
+    background: var(--litmus-surface);
+    border: 1px solid var(--litmus-border-hi);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(200, 245, 66, 0.04),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.inputTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem 0;
+}
+
+.inputLabel {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--litmus-muted2);
+}
+
+.charCounter {
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    transition: color 0.3s;
+}
+
+.textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    color: var(--litmus-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    padding: 0.75rem 1.1rem;
+    caret-color: var(--litmus-accent);
+    box-sizing: border-box;
+}
+
+.textarea::placeholder {
+    color: var(--litmus-muted2);
+}
+
+.textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.inputBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.1rem;
+    border-top: 1px solid var(--litmus-border);
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.inputHint {
+    font-size: 0.72rem;
+    color: var(--litmus-muted2);
+}
+
+.submitBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--litmus-bg);
+    background: var(--litmus-accent);
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submitBtn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ── Scan Log ────────────────────────────────────────────────── */
+.scanLog {
+    overflow: hidden;
+    background: var(--litmus-surface);
+    border: 1px solid var(--litmus-border);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-family: 'DM Mono', 'Courier New', monospace;
+}
+
+.scanLine {
+    font-size: 0.75rem;
+    color: var(--litmus-muted);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.scanPrompt {
+    color: var(--litmus-accent);
+    font-weight: 700;
+}
+
+/* ── Thinking Dots ───────────────────────────────────────────── */
+.thinkingDots {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+    margin-left: 2px;
+}
+
+.thinkingDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--litmus-accent);
+    display: inline-block;
+}
+
+/* ── Example Chips ───────────────────────────────────────────── */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.chipsLabel {
+    font-size: 0.75rem;
+    color: var(--litmus-muted2);
+}
+
+.chip {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: var(--litmus-muted);
+    background: var(--litmus-surface);
+    border: 1px solid var(--litmus-border-hi);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chip:hover {
+    color: var(--litmus-text);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--litmus-surface2);
+}
+
+@media (max-width: 480px) {
+    .chips {
+        display: none;
+    }
+}

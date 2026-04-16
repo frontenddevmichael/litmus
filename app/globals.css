@@ -1,0 +1,92 @@
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #080808;
+  color: #f0ede6;
+  font-family: var(--font-dm-sans, 'DM Sans', sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Litmus Token System ──────────────────────────────────────*/
+:root {
+  /* Core palette */
+  --litmus-bg: #080808;
+  --litmus-surface: #111111;
+  --litmus-surface2: #161616;
+  --litmus-border: rgba(255, 255, 255, 0.07);
+  --litmus-border-hi: rgba(255, 255, 255, 0.14);
+
+  /* Text */
+  --litmus-text: #f0ede6;
+  --litmus-muted: #888580;
+  --litmus-muted2: #555250;
+
+  /* Brand colours */
+  --litmus-accent: #c8f542;
+  /* electric lime */
+  --litmus-accent2: #a78bfa;
+  /* soft violet */
+  --litmus-cyan: #67e8f9;
+  --litmus-orange: #fb923c;
+  --litmus-red: #ff6b6b;
+
+  /* Radius */
+  --litmus-radius: 14px;
+  --litmus-radius-sm: 8px;
+  --litmus-radius-lg: 20px;
+
+  /* Font stacks */
+  --font-display: var(--font-syne, 'Syne', sans-serif);
+  --font-body: var(--font-dm-sans, 'DM Sans', sans-serif);
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────*/
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Selection ────────────────────────────────────────────────*/
+::selection {
+  background: rgba(200, 245, 66, 0.2);
+  color: var(--litmus-text);
+}
+
+/* ── Utility classes ──────────────────────────────────────────*/
+.litmus-font-display {
+  font-family: var(--font-display);
+}
+
+.litmus-accent-text {
+  color: var(--litmus-accent);
+}
+
+.litmus-muted-text {
+  color: var(--litmus-muted);
+}
