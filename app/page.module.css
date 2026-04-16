@@ -861,6 +861,17 @@
   .featuresGrid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
+
+  .heroScreens {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .hero{
+    min-height: fit-content;
+
+  }
 }
 
 @media (max-width: 640px) {
