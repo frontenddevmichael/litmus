@@ -5,10 +5,9 @@ import { motion, useInView, useScroll, useTransform, useSpring, AnimatePresence 
 import Link from 'next/link';
 import styles from './page.module.css';
 import ElectricBorder from '@/components/ElectricBroder';
+import Nav from '@/components/Navbar';
 
 // ─── Static Data ───────────────────────────────────────────────────────────────
-
-const NAV_LINKS = ['How it works', 'Features', 'Docs'];
 
 const STEPS = [
   {
@@ -514,56 +513,6 @@ function ScrollSpotlight({ children, className }) {
   );
 }
 
-// ─── Mobile Nav ────────────────────────────────────────────────────────────────
-
-function MobileNav() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <button
-        className={styles.hamburger}
-        onClick={() => setOpen((o) => !o)}
-        aria-label="Toggle menu"
-      >
-        <motion.span
-          animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
-          transition={{ duration: 0.2 }}
-        />
-        <motion.span
-          animate={{ opacity: open ? 0 : 1, scaleX: open ? 0 : 1 }}
-          transition={{ duration: 0.2 }}
-        />
-        <motion.span
-          animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
-          transition={{ duration: 0.2 }}
-        />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className={styles.mobileMenu}
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-          >
-            {NAV_LINKS.map((l) => (
-              <a key={l} href="#" className={styles.mobileMenuLink} onClick={() => setOpen(false)}>
-                {l}
-              </a>
-            ))}
-            <Link href="/chat" className={styles.ctaPrimary} onClick={() => setOpen(false)}>
-              Get started ↗
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}
-
 // ─── Stats Strip ──────────────────────────────────────────────────────────────
 
 function StatsStrip() {
@@ -626,30 +575,11 @@ export default function LandingPage() {
           boxShadow: '0 0 8px rgba(200,245,66,0.6)',
         }}
       />
-
-      {/* ── Nav ── */}
-      <nav className={styles.nav}>
-        <span className={styles.navLogo}>litmus</span>
-        <ul className={styles.navLinks}>
-          {NAV_LINKS.map((l) => (
-            <li key={l}>
-              <a href="#" className={styles.navLink}>
-                {l}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <Link href="/chat" className={`${styles.navCta} ${styles.navCtaDesktop}`}>
-          Get started ↗
-        </Link>
-        <MobileNav />
-      </nav>
-
+      {/* Nav */}
+      <Nav />
       {/* ── Hero ── */}
-      <div style={{ width: '100%', height: '600px', position: 'relative' }} className={styles.hero}>
+      <div style={{ width: '100%', position: 'relative' }} className={styles.hero}>
         <FloatingOrbs />
-     
-
         <motion.section style={{ opacity: heroOpacity, y: heroY }} className={styles.heroScreens}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
@@ -683,14 +613,14 @@ export default function LandingPage() {
               </a>
             </motion.div>
           </div>
-            <motion.div
-              className={styles.heroCardWrap}
-              initial={{ opacity: 0, y: 40, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <HeroCard />
-            </motion.div>
+          <motion.div
+            className={styles.heroCardWrap}
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <HeroCard />
+          </motion.div>
         </motion.section>
 
       </div>
